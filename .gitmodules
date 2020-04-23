@@ -1,0 +1,3 @@
+[submodule "mipay-extract"]
+	path = mipay-extract
+	url = https://github.com/linusyang92/mipay-extract.git
