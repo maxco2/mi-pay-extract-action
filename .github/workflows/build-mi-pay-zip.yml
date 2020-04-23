@@ -43,6 +43,12 @@ jobs:
           export zip_name=`ls mipay*.zip`
           export zip_ver=`ls mipay*.zip | cut -d '-' -f 3 | cut -d '.' -f 1-4`
 
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.17.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CUSTOM_TAG: ${{ env.zip_ver }}
+
     - name: upload mipay.zip to release
       uses: svenstaro/upload-release-action@v1-release
       with:
