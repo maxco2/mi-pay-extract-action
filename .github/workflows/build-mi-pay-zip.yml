@@ -33,8 +33,8 @@ jobs:
           ./extract.sh 
           mv ./mipay*.zip ./mipay.zip
     - name: upload mipay.zip to release
-        uses: svenstaro/upload-release-action@v1-release
-        with:
+      uses: svenstaro/upload-release-action@v1-release
+      with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: mipay-extract/mipay.zip
           asset_name: mipay.zip
