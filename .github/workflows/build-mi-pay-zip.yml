@@ -29,5 +29,7 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+          sudo apt update
+          sudo apt install -y openjdk-8-jre python2.7
+    #wget http://bigota.d.miui.com/V11.0.8.0.QFKCNXM/miui_RAPHAEL_V11.0.8.0.QFKCNXM_687a01bd2f_10.0.zip
+          
