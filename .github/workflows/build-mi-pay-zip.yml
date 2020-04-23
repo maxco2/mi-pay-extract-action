@@ -32,6 +32,7 @@ jobs:
           cd mipay-extract
     - name: download rom zip
       run: |
+          cd mipay-extract
           python3 miui-cn-latest.py | xargs -I {} aria2c -j10 {}
 
     - name: extract rom zip
@@ -50,12 +51,6 @@ jobs:
       name: output zip_name
       run: |
           echo $zip_name
-
-          #    - name: Bump version and push tag
-          #      uses: anothrNick/github-tag-action@1.17.2
-          #      env:
-          #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          #        CUSTOM_TAG: ${{ env.zip_ver }}
 
     - name: upload mipay.zip to release
       uses: svenstaro/upload-release-action@v1-release
