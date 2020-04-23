@@ -36,13 +36,20 @@ jobs:
 
     - name: extract rom zip
       run: |
-          pwd
-          ls
           cd mipay-extract
           ./extract.sh 
           export zip_name=`ls mipay*.zip`
           export zip_ver=`ls mipay*.zip | cut -d '-' -f 3 | cut -d '.' -f 1-4`
+
+    - id: zip_ver
+      name: output zip_ver
+      run: |
           echo $zip_ver
+
+    - id: zip_name
+      name: output zip_name
+      run: |
+          echo $zip_name
 
           #    - name: Bump version and push tag
           #      uses: anothrNick/github-tag-action@1.17.2
@@ -54,8 +61,8 @@ jobs:
       uses: svenstaro/upload-release-action@v1-release
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: mipay-extract/${{ env.zip_name }}
-          asset_name: ${{ env.zip_name }}
-          tag: vtest
+          file: mipay-extract/${{ steps.zip_name.outputs }}
+          asset_name: ${{ steps.zip_name.outputs }}
+          tag: ${{ steps.zip_ver.outputs }} 
           overwrite: true
           
