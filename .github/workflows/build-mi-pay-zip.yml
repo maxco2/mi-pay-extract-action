@@ -22,14 +22,22 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
-
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
       run: |
           sudo apt update
           sudo apt install -y openjdk-8-jre python2.7
-    #wget http://bigota.d.miui.com/V11.0.8.0.QFKCNXM/miui_RAPHAEL_V11.0.8.0.QFKCNXM_687a01bd2f_10.0.zip
+          git submodule update --init
+          cd mi-pay-extract
+          wget http://bigota.d.miui.com/V11.0.8.0.QFKCNXM/miui_RAPHAEL_V11.0.8.0.QFKCNXM_687a01bd2f_10.0.zip
+          ./extract.sh 
+          mv ./mipay*.zip ./mipay.zip
+    - name: upload mipay.zip to release
+        uses: svenstaro/upload-release-action@v1-release
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: mipay-extract/mipay.zip
+          asset_name: mipay.zip
+          tag: ${{ github.ref }}
+          overwrite: true
           
