@@ -42,12 +42,13 @@ jobs:
           ./extract.sh 
           export zip_name=`ls mipay*.zip`
           export zip_ver=`ls mipay*.zip | cut -d '-' -f 3 | cut -d '.' -f 1-4`
+          echo $zip_ver
 
-    - name: Bump version and push tag
-      uses: anothrNick/github-tag-action@1.17.2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        CUSTOM_TAG: ${{ env.zip_ver }}
+          #    - name: Bump version and push tag
+          #      uses: anothrNick/github-tag-action@1.17.2
+          #      env:
+          #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          #        CUSTOM_TAG: ${{ env.zip_ver }}
 
     - name: upload mipay.zip to release
       uses: svenstaro/upload-release-action@v1-release
@@ -55,6 +56,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: mipay-extract/${{ env.zip_name }}
           asset_name: ${{ env.zip_name }}
-          tag: ${{ env.zip_ver }}
+          tag: vtest
           overwrite: true
           
