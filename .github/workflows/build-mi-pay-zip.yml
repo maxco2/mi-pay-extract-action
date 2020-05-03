@@ -28,6 +28,7 @@ jobs:
           git submodule update --init
           sudo apt update
           sudo apt install -y openjdk-8-jre python2.7 python3 aria2
+          pip install requests --user
           mv *.py mipay-extract
           cd mipay-extract
     - name: download rom zip
