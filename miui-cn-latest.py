@@ -11,7 +11,7 @@ def get_cn_latest():
         sys.exit()
 
 def get_cn_dev_latest():
-    return 'https://bigota.d.miui.com/20.5.7/miui_RAPHAEL_20.5.7_2487e4007c_10.0.zip'
+    return 'https://bigota.d.miui.com/20.5.14/miui_RAPHAEL_20.5.14_7a873b3030_10.0.zip'
 
 
 if __name__=='__main__':
